@@ -1,0 +1,6 @@
+/datasets/cifar10
+/datasets/mnist
+
+.ipynb_checkpoints
+
+*__pycache__/
