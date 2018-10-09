@@ -66,7 +66,7 @@ def load_CIFAR10(ROOT):
     return Xtr, Ytr, Xte, Yte
 
 
-def get_cifar10_data(num_training=49000, num_validation=1000, num_test=1000, shuffle=False):
+def get_cifar10_data(num_training=49000, num_validation=1000, num_test=10000, shuffle=False):
     """
     Load the CIFAR-10 dataset
     """
@@ -182,12 +182,11 @@ def load_MNIST():
     return (X_train, y_train, X_test, y_test)
 
 
-def get_mnist_data(num_training=49000, num_validation=1000, num_test=1000, shuffle=False):
+def get_mnist_data(num_training=59000, num_validation=1000, num_test=10000, shuffle=False):
     """
     Load the MNIST dataset
     """
-    # Load the raw CIFAR-10 data
-    mnist_dir = '../datasets/mnist'
+    # Load the raw MNIST data
     X_train, y_train, X_test, y_test = load_MNIST()
         
     # Subsample the data
@@ -217,7 +216,6 @@ def get_mnist_data(num_training=49000, num_validation=1000, num_test=1000, shuff
         X_test = X_test[indices_test]
         y_test = y_test[indices_test]
         
-    # Transpose so that channels come first
     X_train = X_train.copy()
     X_val = X_val.copy()
     X_test = X_test.copy()
