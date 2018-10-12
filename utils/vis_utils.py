@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.metrics import confusion_matrix
 
 
-def plot_train_val_loss_acc(train_loss, val_loss, train_acc, val_acc, title='sgd'):
+def plot_train_val_loss_acc(train_loss, val_loss, train_acc, val_acc, update_rule):
     plt.figure(figsize=(18, 6))
 
     plt.subplot(1, 2, 1)
@@ -14,7 +14,7 @@ def plot_train_val_loss_acc(train_loss, val_loss, train_acc, val_acc, title='sgd
     plt.legend()
     plt.xlabel('epoch')
     plt.ylabel('loss')
-    plt.title('loss [{}]'.format(title))
+    plt.title('loss [{}]'.format(update_rule))
 
     plt.subplot(1, 2, 2)
     plt.plot(range(1, len(train_acc) + 1), train_acc, label='train')
@@ -22,7 +22,7 @@ def plot_train_val_loss_acc(train_loss, val_loss, train_acc, val_acc, title='sgd
     plt.legend()
     plt.xlabel('epoch')
     plt.ylabel('accuracy')
-    plt.title('accuracy [{}]'.format(title))
+    plt.title('accuracy [{}]'.format(update_rule))
 
 
 def plot_confusion_matrix(y_pred, y, classes,

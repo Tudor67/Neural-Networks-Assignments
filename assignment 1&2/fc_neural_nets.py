@@ -85,19 +85,32 @@ class FCNet(object):
         return grads
     
     
-    def __optimization_step__(self, X, y, update_rule, lr):
+    def __optimization_step__(self, X, y,
+                              update_rule, lr,
+                              momentum, velocity):
         _, loss, cache = self.forward(X, y)
         grads = self.backward(cache)
         
         for param_name in grads.keys():
             if update_rule == 'sgd':
                 self.params[param_name] -= lr * grads[param_name]
+            elif update_rule == 'momentum':
+                velocity[param_name] = momentum * velocity[param_name] - lr * grads[param_name]
+                self.params[param_name] += velocity[param_name]
     
     
     def optimize(self, X_train, y_train,\
                  X_val=None, y_val=None,\
                  batch_size=128, epochs=10,\
-                 update_rule='sgd', lr=1e-2):
+                 update_rule='sgd',
+                 update_params={}):
+        
+        lr = update_params.get('lr', 5e-2)
+        momentum = update_params.get('momentum', 0.9)
+        velocity = {}
+        if update_rule in ['momentum']:
+            for param_name in self.params.keys():
+                velocity[param_name] = np.zeros_like(self.params[param_name])
         
         self.train_loss_history = []
         self.train_acc_history = []
@@ -113,12 +126,14 @@ class FCNet(object):
         
         for epoch in tqdm(range(epochs)):
             train_batch_losses = []
-            train_batch_acc = []
+            train_batch_acc = []  
             
             for (start_idx, end_idx) in zip(start_indices, end_indices):
                 X_train_batch = X_train[start_idx:end_idx]
                 y_train_batch = y_train[start_idx:end_idx]
-                self.__optimization_step__(X_train_batch, y_train_batch, update_rule, lr)
+                self.__optimization_step__(X_train_batch, y_train_batch, 
+                                           update_rule, lr,
+                                           momentum, velocity)
                 
                 # train_batch loss and accuracy
                 scores, loss, _ = self.forward(X_train_batch, y_train_batch)
