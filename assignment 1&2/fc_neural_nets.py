@@ -88,14 +88,37 @@ class FCNet(object):
     def __optimization_step__(self, X, y,
                               update_rule, lr,
                               momentum, velocity):
-        _, loss, cache = self.forward(X, y)
-        grads = self.backward(cache)
+        grads = None
+        grads_ahead = None
+        if update_rule in ['sgd', 'momentum']:
+            _, loss, cache = self.forward(X, y)
+            grads = self.backward(cache)
+        elif update_rule in ['nesterov']:
+            # save initial/current params/weights
+            initial_params = {}
+            for param_name in self.params.keys():
+                initial_params[param_name] = self.params[param_name].copy()
+            
+            # lookahead params/weights
+            for param_name in self.params.keys():
+                self.params[param_name] += momentum * velocity[param_name]
+                
+            # compute grads_ahead
+            _, loss_ahead, cache_ahead = self.forward(X, y)
+            grads_ahead = self.backward(cache_ahead)
+            
+            # go back to initial/current params/weights
+            for param_name in self.params.keys():
+                self.params[param_name] = initial_params[param_name]
         
-        for param_name in grads.keys():
+        for param_name in self.params.keys():
             if update_rule == 'sgd':
                 self.params[param_name] -= lr * grads[param_name]
             elif update_rule == 'momentum':
                 velocity[param_name] = momentum * velocity[param_name] - lr * grads[param_name]
+                self.params[param_name] += velocity[param_name]
+            elif update_rule == 'nesterov':
+                velocity[param_name] = momentum * velocity[param_name] - lr * grads_ahead[param_name]
                 self.params[param_name] += velocity[param_name]
     
     
@@ -108,7 +131,7 @@ class FCNet(object):
         lr = update_params.get('lr', 5e-2)
         momentum = update_params.get('momentum', 0.9)
         velocity = {}
-        if update_rule in ['momentum']:
+        if update_rule in ['momentum', 'nesterov']:
             for param_name in self.params.keys():
                 velocity[param_name] = np.zeros_like(self.params[param_name])
         
