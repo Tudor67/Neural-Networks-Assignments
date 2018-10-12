@@ -1,5 +1,7 @@
 import numpy as np
 
+from tqdm import tqdm
+
 
 class FCNet(object):
     """
@@ -31,6 +33,8 @@ class FCNet(object):
         self.train_acc_history = []
         self.val_loss_history = []
         self.val_acc_history = []
+        self.best_val_epoch = 0
+        self.best_val_acc = 0
     
 
     def forward(self, X, y=None):
@@ -81,27 +85,25 @@ class FCNet(object):
         return grads
     
     
-    def __optimization_step__(self, X, y, update_rule, params):
+    def __optimization_step__(self, X, y, update_rule, lr):
         _, loss, cache = self.forward(X, y)
         grads = self.backward(cache)
         
-        lr = params['lr']
-        
         for param_name in grads.keys():
-            if param_name[0] != 'X':
-                if update_rule == 'sgd':
-                    self.params[param_name] -= lr * grads[param_name]
+            if update_rule == 'sgd':
+                self.params[param_name] -= lr * grads[param_name]
     
     
     def optimize(self, X_train, y_train,\
                  X_val=None, y_val=None,\
                  batch_size=128, epochs=10,\
-                 update_rule='sgd', params={'lr': 1e-2}):
+                 update_rule='sgd', lr=1e-2):
         
         self.train_loss_history = []
         self.train_acc_history = []
         self.val_loss_history = []
         self.val_acc_history = []
+        best_val_params = {}
         
         N = len(y_train)
         start_indices = list(range(0, N, batch_size))
@@ -109,14 +111,14 @@ class FCNet(object):
         if end_indices[-1] != N:
             end_indices.append(N)
         
-        for epoch in range(epochs):
+        for epoch in tqdm(range(epochs)):
             train_batch_losses = []
             train_batch_acc = []
             
             for (start_idx, end_idx) in zip(start_indices, end_indices):
                 X_train_batch = X_train[start_idx:end_idx]
                 y_train_batch = y_train[start_idx:end_idx]
-                self.__optimization_step__(X_train_batch, y_train_batch, update_rule, params)
+                self.__optimization_step__(X_train_batch, y_train_batch, update_rule, lr)
                 
                 # train_batch loss and accuracy
                 scores, loss, _ = self.forward(X_train_batch, y_train_batch)
@@ -136,6 +138,18 @@ class FCNet(object):
                 acc = FCNet.get_acc(y_pred, y_val)
                 self.val_loss_history.append(loss)
                 self.val_acc_history.append(acc)
+                
+                # save the weights of the best model until now
+                if self.best_val_acc < acc:
+                    self.best_val_acc = acc
+                    self.best_val_epoch = epoch + 1
+                    # copy the weights carefully :) !
+                    for param_name in self.params.keys():
+                        best_val_params[param_name] = self.params[param_name].copy()
+        
+        # save the weights of the best model
+        for param_name in best_val_params.keys():
+            self.params[param_name] = best_val_params[param_name]
     
     
     def predict(self, X):
@@ -158,6 +172,14 @@ class FCNet(object):
     
     def get_val_acc_history(self):
         return self.val_acc_history
+    
+    
+    def get_best_val_epoch(self):
+        return self.best_val_epoch
+    
+    
+    def get_best_val_acc(self):
+        return self.best_val_acc
     
     
     def get_acc(y_pred, y):
