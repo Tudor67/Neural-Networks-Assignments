@@ -88,10 +88,11 @@ class FCNet(object):
     def __optimization_step__(self, X, y,
                               update_rule, lr,
                               momentum, velocity,
-                              grads_cache, decay_rate):
+                              grads_cache, decay_rate,
+                              beta1, beta2, step):
         grads = None
         grads_ahead = None
-        if update_rule in ['sgd', 'momentum', 'adagrad', 'rmsprop']:
+        if update_rule in ['sgd', 'momentum', 'adagrad', 'rmsprop', 'adam']:
             _, loss, cache = self.forward(X, y)
             grads = self.backward(cache)
         elif update_rule in ['nesterov']:
@@ -127,24 +128,31 @@ class FCNet(object):
             elif update_rule == 'rmsprop':
                 grads_cache[param_name] = decay_rate * grads_cache[param_name] + (1 - decay_rate) * grads[param_name] ** 2
                 self.params[param_name] -= lr * grads[param_name] / (1e-8 + np.sqrt(grads_cache[param_name]))
+            elif update_rule == 'adam':
+                velocity[param_name] = beta1 * velocity[param_name] - (1 - beta1) * grads[param_name]
+                grads_cache[param_name] = beta2 * grads_cache[param_name] + (1 - beta2) * grads[param_name] ** 2
+                self.params[param_name] -= lr * (grads[param_name] / (1 - beta1 ** step)) /\
+                                           (1e-8 + np.sqrt(grads_cache[param_name] / (1 - beta2 ** step)))
     
     
-    def optimize(self, X_train, y_train,\
-                 X_val=None, y_val=None,\
-                 batch_size=128, epochs=10,\
+    def optimize(self, X_train, y_train,
+                 X_val=None, y_val=None,
+                 batch_size=128, epochs=10,
                  update_rule='sgd',
                  update_params={}):
         
         lr = update_params.get('lr', 5e-2)
         momentum = update_params.get('momentum', 0.9)
         decay_rate = update_params.get('decay_rate', 0.9)
+        beta1 = update_params.get('beta1', 0.9)
+        beta2 = update_params.get('beta2', 0.999)
         velocity = {}
         grads_cache = {}
         
         for param_name in self.params.keys():
-            if update_rule in ['momentum', 'nesterov']:
+            if update_rule in ['momentum', 'nesterov', 'adam']:
                 velocity[param_name] = np.zeros_like(self.params[param_name])
-            elif update_rule in ['adagrad', 'rmsprop']:
+            if update_rule in ['adagrad', 'rmsprop', 'adam']:
                 grads_cache[param_name] = np.zeros_like(self.params[param_name])
         
         self.train_loss_history = []
@@ -169,7 +177,8 @@ class FCNet(object):
                 self.__optimization_step__(X_train_batch, y_train_batch, 
                                            update_rule, lr,
                                            momentum, velocity,
-                                           grads_cache, decay_rate)
+                                           grads_cache, decay_rate,
+                                           beta1, beta2, step=epoch+1)
                 
                 # train_batch loss and accuracy
                 scores, loss, _ = self.forward(X_train_batch, y_train_batch)
