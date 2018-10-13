@@ -123,7 +123,7 @@ class FCNet(object):
                 self.params[param_name] += velocity[param_name]
             elif update_rule == 'adagrad':
                 grads_cache[param_name] += grads[param_name] ** 2
-                self.params[param_name] -= lr * grads[param_name] / np.sqrt(grads_cache[param_name] + 1e-8)
+                self.params[param_name] -= lr * grads[param_name] / (1e-8 + np.sqrt(grads_cache[param_name]))
     
     
     def optimize(self, X_train, y_train,\
