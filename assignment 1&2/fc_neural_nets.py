@@ -14,7 +14,7 @@ class FCNet(object):
     self.params that maps parameter names to numpy arrays.
     """
 
-    def __init__(self, input_dim=28*28, hidden_dim=400, num_classes=10):
+    def __init__(self, input_dim=28*28, hidden_dim=300, num_classes=10):
         """
         Initialize a new network.
 
