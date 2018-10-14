@@ -141,7 +141,7 @@ class FCNet(object):
                  update_rule='sgd',
                  update_params={}):
         
-        lr = update_params.get('lr', 5e-2)
+        lr = update_params.get('lr', 1e-3)
         momentum = update_params.get('momentum', 0.9)
         decay_rate = update_params.get('decay_rate', 0.9)
         beta1 = update_params.get('beta1', 0.9)

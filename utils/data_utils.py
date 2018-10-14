@@ -72,7 +72,19 @@ def get_cifar10_data(num_training=49000, num_validation=1000, num_test=10000, sh
     """
     # Load the raw CIFAR-10 data
     X_train, y_train, X_test, y_test = load_CIFAR10(CIFAR10_DIR)
+    
+    # Shuffle the data
+    if shuffle:
+        indices_train = np.arange(len(y_train))
+        np.random.shuffle(indices_train)
+        X_train = X_train[indices_train]
+        y_train = y_train[indices_train]
         
+        indices_test = np.arange(len(y_test))
+        np.random.shuffle(indices_test)
+        X_test = X_test[indices_test]
+        y_test = y_test[indices_test]
+    
     # Subsample the data
     mask = list(range(num_training, num_training + num_validation))
     X_val = X_train[mask] / 255.0
@@ -83,22 +95,6 @@ def get_cifar10_data(num_training=49000, num_validation=1000, num_test=10000, sh
     mask = list(range(num_test))
     X_test = X_test[mask] / 255.0
     y_test = y_test[mask]
-    
-    if shuffle:
-        indices_train = np.arange(num_training)
-        np.random.shuffle(indices_train)
-        X_train = X_train[indices_train]
-        y_train = y_train[indices_train]
-        
-        indices_val = np.arange(num_validation)
-        np.random.shuffle(indices_val)
-        X_val = X_val[indices_val]
-        y_val = y_val[indices_val]
-        
-        indices_test = np.arange(num_test)
-        np.random.shuffle(indices_test)
-        X_test = X_test[indices_test]
-        y_test = y_test[indices_test]
     
     # Transpose so that channels come first
     X_train = X_train.transpose(0, 3, 1, 2).copy()
@@ -188,6 +184,18 @@ def get_mnist_data(num_training=59000, num_validation=1000, num_test=10000, shuf
     """
     # Load the raw MNIST data
     X_train, y_train, X_test, y_test = load_MNIST()
+    
+    # Shuffle the data
+    if shuffle:
+        indices_train = np.arange(len(y_train))
+        np.random.shuffle(indices_train)
+        X_train = X_train[indices_train]
+        y_train = y_train[indices_train]
+        
+        indices_test = np.arange(len(y_test))
+        np.random.shuffle(indices_test)
+        X_test = X_test[indices_test]
+        y_test = y_test[indices_test]
         
     # Subsample the data
     mask = list(range(num_training, num_training + num_validation))
@@ -199,22 +207,6 @@ def get_mnist_data(num_training=59000, num_validation=1000, num_test=10000, shuf
     mask = list(range(num_test))
     X_test = X_test[mask] / 255.0
     y_test = y_test[mask]
-    
-    if shuffle:
-        indices_train = np.arange(num_training)
-        np.random.shuffle(indices_train)
-        X_train = X_train[indices_train]
-        y_train = y_train[indices_train]
-        
-        indices_val = np.arange(num_validation)
-        np.random.shuffle(indices_val)
-        X_val = X_val[indices_val]
-        y_val = y_val[indices_val]
-        
-        indices_test = np.arange(num_test)
-        np.random.shuffle(indices_test)
-        X_test = X_test[indices_test]
-        y_test = y_test[indices_test]
         
     X_train = X_train.copy()
     X_val = X_val.copy()
