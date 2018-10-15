@@ -1,5 +1,5 @@
 # Assignment 1&2
-The architecure of the FCNet is fc - tanh - fc - softmax.
+The architecure of the FCNet is fc300 - tanh - fc10 - softmax.
 
 ## Results
 | Dataset | Validation accuracy | Training accuracy | Update rule | Epochs |
