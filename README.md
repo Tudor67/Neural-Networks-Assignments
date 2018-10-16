@@ -1,7 +1,7 @@
 # Neural-Networks-Assignments
 Neural networks assignments from University Politehnica of Bucharest
 
-## Assignments (2018)
+## Assignments (2017-2018)
 - [x] A1: FCNet (SGD)
 - [x] A2: FCNet (Momentum, Nesterov Momentum, Adagrad, RMSProp, Adam)
 - [ ] A3: ConvNet
