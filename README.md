@@ -1,14 +1,12 @@
 # Neural-Networks-Assignments
 Neural networks assignments from University Politehnica of Bucharest
 
+## Assignments (2018-2019)
+- [ ] __A1:__ Linear regression. Logistic regression.
+- [ ] __A2:__ Multi-layer feed-forward neural network (SGD, Nesterov Momentum, Adam).  
+Update rule (SGD, Nesterov Momentum, Adagrad, RMSProp, Adam) examples on simple functions.
+- [ ] __A3:__ ConvNet (weight visualization)
+
 ## Assignments (2017-2018)
-- [x] A1: FCNet (SGD)
-- [x] A2: FCNet (Momentum, Nesterov Momentum, Adagrad, RMSProp, Adam)
-- [ ] A3: ConvNet
-- [ ] A4: ConvNet (Batch normalization, Dropout)
-- [ ] A5: Adversarial examples
-- [ ] A6: Char-RNN
-- [ ] A7: VAE (/GAN)
-- [ ] A8: RBM
-- [ ] A9: DQN
-- [ ] A10: A2C
+- [x] __A1:__ FCNet (SGD)
+- [x] __A2:__ FCNet (Momentum, Nesterov Momentum, Adagrad, RMSProp, Adam)
