@@ -89,7 +89,7 @@ class FCNet(object):
                               update_rule, lr,
                               momentum, velocity,
                               grads_cache, decay_rate,
-                              beta1, beta2):
+                              beta1, beta2, iteration):
         grads = None
         grads_ahead = None
         if update_rule in ['sgd', 'momentum', 'adagrad', 'rmsprop', 'adam']:
@@ -129,10 +129,12 @@ class FCNet(object):
                 grads_cache[param_name] = decay_rate * grads_cache[param_name] + (1 - decay_rate) * grads[param_name] ** 2
                 self.params[param_name] -= lr * grads[param_name] / (1e-8 + np.sqrt(grads_cache[param_name]))
             elif update_rule == 'adam':
-                # adam without bias correction
+                # adam with bias correction
                 velocity[param_name] = beta1 * velocity[param_name] + (1 - beta1) * grads[param_name]
+                velocity_hat = velocity[param_name] / (1 - beta1 ** iteration)
                 grads_cache[param_name] = beta2 * grads_cache[param_name] + (1 - beta2) * grads[param_name] ** 2
-                self.params[param_name] -= lr * velocity[param_name] / (1e-8 + np.sqrt(grads_cache[param_name]))
+                grads_cache_hat = grads_cache[param_name] / (1 - beta2 ** iteration)
+                self.params[param_name] -= lr * velocity_hat / (1e-8 + np.sqrt(grads_cache_hat))
     
     
     def optimize(self, X_train, y_train,
@@ -173,13 +175,14 @@ class FCNet(object):
             train_batch_acc = []  
             
             for (start_idx, end_idx) in zip(start_indices, end_indices):
+                iteration += 1
                 X_train_batch = X_train[start_idx:end_idx]
                 y_train_batch = y_train[start_idx:end_idx]
                 self.__optimization_step__(X_train_batch, y_train_batch, 
                                            update_rule, lr,
                                            momentum, velocity,
                                            grads_cache, decay_rate,
-                                           beta1, beta2)
+                                           beta1, beta2, iteration)
                 
                 # train_batch loss and accuracy
                 scores, loss, _ = self.forward(X_train_batch, y_train_batch)
