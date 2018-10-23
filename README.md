@@ -5,7 +5,7 @@ Neural networks assignments from University Politehnica of Bucharest
 - [x] A1: Linear regression. Logistic regression.
 - [x] A2: Feed-forward neural network (FCNet) for image classification (SGD, Nesterov Momentum, Adam).  
 Update rule (SGD, Nesterov Momentum, Adagrad, RMSProp, Adam) examples on simple functions.
-- [ ] A3: ConvNet (weight visualization)
+- [x] A3: ConvNet for image classification (CIFAR-10). Weight visualization.
 
 ## Assignments (2017-2018)
 - [x] A1: FCNet (SGD)
