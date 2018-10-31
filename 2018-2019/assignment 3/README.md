@@ -17,3 +17,15 @@ These weights/filters are ugly. I expected to see edge or color filters, not ran
 ### Loss and Accuracy
 ![loss_accuracy_tensorflow](./images/loss_accuracy_tensorflow.png)
 
+## PyTorch results
+1. `ConvNet_CIFAR10_PyTorch.ipynb`
+
+| Dataset split | Accuracy | Epoch |
+| :---: | :---: | :---: |
+| Train (49,000) | 83.49% | 15 |
+| Validation (1,000) | 69.00% | 15 |
+| Test (10,000) | 67.42% | 15 |
+
+### Conv1 weights/filters
+These weights/filters look a little better.
+![conv1_weights_pytorch](./images/conv1_weights_pytorch.png)
