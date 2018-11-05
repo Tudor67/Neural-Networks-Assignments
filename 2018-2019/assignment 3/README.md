@@ -1,5 +1,25 @@
 # Assignment 3 (2018-2019)
 
+## Architecture
+1.1) Conv(5, 5, filters=64)  
+1.2) ReLU  
+1.3) MaxPooling(ksize=2, stride=2)  
+2.1) Conv(5, 5, filters=16)  
+2.2) ReLU  
+2.3) MaxPooling(ksize=2, stride=2)  
+3.1) FC(200)  
+3.2) ReLU  
+4.1) FC(10)  
+4.2) Softmax
+
+## Training details
+* train data: 49,000 images;
+* validation data: 1,000 images;
+* epochs: 15;
+* batch_size: 64;
+* loss: cross-entropy;
+* optimizer: Adam with default parameters.
+
 ## TensorFlow results
 1. `ConvNet_CIFAR10_TensorFlow.ipynb`
 2. `$ tensorboard --logdir=./logs`
