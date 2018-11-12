@@ -1,5 +1,5 @@
 # Assignment 5 (2018-2019)
-__Restricted Boltzmann Machines (RBMs)__
+__Restricted Boltzmann Machines (RBMs)__  
 Training methods:  
 * Contrastive Divergence
 * Persistent Contrastive Divergence
