@@ -1,9 +1,16 @@
 # Assignment 5 (2018-2019)
-__Restricted Boltzmann Machines (RBMs)__  
-Training methods:  
+__Restricted Boltzmann Machines (RBMs)__
+
+## Training methods
 * Contrastive Divergence
 * Persistent Contrastive Divergence
 * Parallel Tempering
+
+## Applications
+* Feature extraction (leverage the availability of unlabeled data)
+* Data generation
+* Data compression
+* Image restoration
 
 ## References
 1. [A Practical Guide to Training Restricted Boltzmann Machines (Hinton, 2010)](http://www.cs.toronto.edu/~hinton/absps/guideTR.pdf)
