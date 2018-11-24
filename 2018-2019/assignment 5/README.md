@@ -12,8 +12,8 @@ __Restricted Boltzmann Machines (RBMs)__
 * Data compression
 * Image restoration
 
-RBMs are most often used as feature extractors.  
-VAEs and GANs are better generative models than RBMs.
+> RBMs are most often used as feature extractors.
+> VAEs and GANs are better generative models than RBMs.
 
 ## Visualizing weights during the training phase
 * The learned features correspond to the weights of RBM hidden units.
@@ -23,11 +23,7 @@ VAEs and GANs are better generative models than RBMs.
 ![final_weights](./images/final_weights.png)
 
 ## Results
-
-### Digits generation
 ![digits_generation](./images/digits_generation.png)
-
-### Digits restoration
 ![digits_restoration_1](./images/digits_restoration_1.png)
 ![digits_restoration_2](./images/digits_restoration_2.png)
 ![digits_restoration_3](./images/digits_restoration_3.png)
