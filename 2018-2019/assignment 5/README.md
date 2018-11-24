@@ -12,6 +12,9 @@ __Restricted Boltzmann Machines (RBMs)__
 * Data compression
 * Image restoration
 
+RBMs are most often used as feature extractors.  
+VAEs and GANs are better generative models than RBMs.
+
 ## Visualizing weights during the training phase
 * The learned features correspond to the weights of RBM hidden units.
 * Evolution of the learned features during the training: random -> global -> local.
@@ -20,8 +23,14 @@ __Restricted Boltzmann Machines (RBMs)__
 ![final_weights](./images/final_weights.png)
 
 ## Results
+
 ### Digits generation
+![digits_generation](./images/digits_generation.png)
+
 ### Digits restoration
+![digits_restoration_1](./images/digits_restoration_1.png)
+![digits_restoration_2](./images/digits_restoration_2.png)
+![digits_restoration_3](./images/digits_restoration_3.png)
 
 ## References
 1. [Training Restricted Boltzmann Machines using Approximations to the Likelihood Gradient (Tieleman, 2008)](https://www.cs.toronto.edu/~tijmen/pcd/pcd.pdf)
@@ -41,3 +50,4 @@ __Restricted Boltzmann Machines (RBMs)__
 15. [Neural networks [5.6]: RBM - persistent contrastive divergence](https://www.youtube.com/watch?v=S0kFFiHzR8M)
 16. [Neural networks [5.7]: RBM - example](https://www.youtube.com/watch?v=n26NdEtma8U)
 17. [Neural networks [5.8]: RBM - extensions](https://www.youtube.com/watch?v=iPuqoQih9xk)
+18. [RBMs for beginners](https://skymind.ai/wiki/restricted-boltzmann-machine)
