@@ -23,7 +23,8 @@ __Restricted Boltzmann Machines (RBMs)__
 ![final_weights](./images/final_weights.png)
 
 ## Results
-![digits_generation](./images/digits_generation.png)
+![digits_generation_1](./images/digits_generation_1.png)
+![digits_generation_2](./images/digits_generation_2.png)
 ___
 ![digits_restoration_1](./images/digits_restoration_1.png)
 ![digits_restoration_2](./images/digits_restoration_2.png)
