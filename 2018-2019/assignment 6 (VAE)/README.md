@@ -10,3 +10,4 @@ __Variational Autoencoders (VAEs)__ - generative autoencoders.
 2. [Autoencoder Explained (Siraj Raval)](https://www.youtube.com/watch?v=H1AllrJ-_30)
 3. [Deep Learning Lecture 14: Karol Gregor on Variational Autoencoders and Image Generation](https://www.youtube.com/watch?v=P78QYjWh5sM)
 4. [Lecture 13 | Generative Models (Stanford)](https://www.youtube.com/watch?v=5WoItGTWV54)
+5. [Variational Autoencoder: Intuition and Implementation (Agustinus Kristiadi)](https://wiseodd.github.io/techblog/2016/12/10/variational-autoencoder/)
