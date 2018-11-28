@@ -1,6 +1,7 @@
-**/datasets/cifar10
-**/datasets/mnist
-**/old_experiments
+**/datasets/
+**/datasets/
+**/experiments/
+**/old_experiments/
 
 *.ipynb_checkpoints
 
