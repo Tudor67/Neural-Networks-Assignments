@@ -5,10 +5,10 @@ Neural networks assignments from University Politehnica of Bucharest
 - [x] A1: Linear regression. Logistic regression.
 - [x] A2_1: Feed-forward neural network (a FCNet) for image classification (SGD, Nesterov Momentum, Adam).
 - [x] A2_2: Update rule (SGD, Nesterov Momentum, Adagrad, RMSProp, Adam) examples on simple functions.
-- [x] A3: Convolutional Neural Networks (CNNs) for image classification (CIFAR-10). Weight visualization.
+- [x] A3: Convolutional Neural Networks (CNNs) for image classification (CIFAR-10). Weights visualization.
 - [x] A4: Text generation with Recurrent Neural Networks (RNNs)
 - [x] A5: Image generation with Restricted Boltzmann Machines (RBMs)
-- [ ] A6: Image generation with Variational Autoencoders (VAEs)
+- [x] A6: Image generation with Variational Autoencoders (VAEs)
 - [ ] A7: Image generation with Generative Adversarial Networks (GANs)
 - [ ] Project: Saliency maps
 

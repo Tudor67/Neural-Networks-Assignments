@@ -1,4 +1,3 @@
-
 # Assignment 6 (2018-2019)
 __Variational Autoencoders (VAEs)__ - generative autoencoders.
 ![AE_vs_VAE](./images/AE_vs_VAE.png)
@@ -15,7 +14,13 @@ __Variational Autoencoders (VAEs)__ - generative autoencoders.
 ## Weights visualization
 ![encoder_weights](./images/encoder_weights.png)
 
+## Latent space visualization
+![latent_space_test_batch](./images/latent_space_test_batch.png)
+![walk_the_latent_space](./images/walk_the_latent_space.png)
+
 ## Results
+![vae_reconstructions](./images/vae_reconstructions.png)
+![samples_from_the_model](./images/samples_from_the_model.png)
 
 ## References
 1. [Variational Autoencoders (Arxiv Insights)](https://www.youtube.com/watch?v=9zKuYvjFFS8)
