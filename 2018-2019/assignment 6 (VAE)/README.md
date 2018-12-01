@@ -9,7 +9,8 @@ __Variational Autoencoders (VAEs)__ - generative autoencoders.
 ## Training details
 * num_epochs: 500
 * batch_size: 100
-* nz: [1, 25, 50]
+* latent sizes nz: 1 | 2 | 25 | 50
+> I trained VAEs with different latent sizes (nz) and compared their results.
 
 ## Weights visualization
 ![encoder_weights](./images/encoder_weights.png)
