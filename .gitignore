@@ -2,6 +2,8 @@
 **/experiments/
 **/old_experiments/
 
+**/saved_models/
+
 **/.ipynb_checkpoints/
 
 **/__pycache__/
