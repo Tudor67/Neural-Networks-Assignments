@@ -131,13 +131,12 @@ class GAN:
 
                 for start_idx, end_idx in zip(start_indices, end_indices):
                     X_batch = X[start_idx:end_idx]
-
-                    for _ in range(4):
-                        _, D_loss_batch = sess.run([D_train_step, D_loss],
-                                                   feed_dict={
-                                                        x_real: X_batch,
-                                                        batch_size_placeholder: len(X_batch)
-                                                    })
+                    
+                    _, D_loss_batch = sess.run([D_train_step, D_loss],
+                                               feed_dict={
+                                                    x_real: X_batch,
+                                                    batch_size_placeholder: len(X_batch)
+                                                })
                     _, G_loss_batch = sess.run([G_train_step, G_loss],
                                                feed_dict={batch_size_placeholder: batch_size})
 
