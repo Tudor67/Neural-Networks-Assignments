@@ -3,11 +3,12 @@ import tensorflow as tf
 from vis import grid_vis
 
 class GAN:
-    def __init__(self, z_dim=50, img_h=28, img_w=28, img_c=1, dataset_name='', gan_name=''):
+    def __init__(self, z_dim=50, img_h=28, img_w=28, img_c=1, dataset_name='', gan_type=''):
         self.z_dim = z_dim
         self.img_hwc = (img_h, img_w, img_c)
+        self.img_dim = img_h * img_w * img_c
         self.dataset_name = dataset_name
-        self.gan_name = gan_name
+        self.gan_type = gan_type
 
     def generator(self, z):
         '''
@@ -74,9 +75,11 @@ class GAN:
         return self.generator(z)
 
     def generate_images_np(self, num_images):
+        # do not use this function during training
+        tf.reset_default_graph()
         generate_images = self.generate_images(num_images)
         with tf.Session() as sess:
-            model_name = f'./saved_models/{self.gan_name}_{self.dataset_name}.ckpt'
+            model_name = f'./saved_models/{self.gan_type}_{self.dataset_name}.ckpt'
             tf.train.Saver().restore(sess, model_name)
             generated_images = sess.run(generate_images)
         return generated_images
@@ -129,11 +132,12 @@ class GAN:
                 for start_idx, end_idx in zip(start_indices, end_indices):
                     X_batch = X[start_idx:end_idx]
 
-                    _, D_loss_batch = sess.run([D_train_step, D_loss],
-                                               feed_dict={
-                                                    x_real: X_batch,
-                                                    batch_size_placeholder: len(X_batch)
-                                                })
+                    for _ in range(4):
+                        _, D_loss_batch = sess.run([D_train_step, D_loss],
+                                                   feed_dict={
+                                                        x_real: X_batch,
+                                                        batch_size_placeholder: len(X_batch)
+                                                    })
                     _, G_loss_batch = sess.run([G_train_step, G_loss],
                                                feed_dict={batch_size_placeholder: batch_size})
 
@@ -151,7 +155,7 @@ class GAN:
                     generated_images = sess.run(x_fake, feed_dict={batch_size_placeholder: 45})
                     grid_vis(generated_images, img_h=h, img_w=w, img_c=c, rows=3, cols=15)
 
-            tf.train.Saver().save(sess, f'./saved_models/{self.gan_name}_{self.dataset_name}.ckpt')
+            tf.train.Saver().save(sess, f'./saved_models/{self.gan_type}_{self.dataset_name}.ckpt')
         return D_loss_per_epoch, G_loss_per_epoch
 
 def sample_noise(batch_size, dim):

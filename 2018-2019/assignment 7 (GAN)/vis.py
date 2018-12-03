@@ -36,9 +36,9 @@ def grid_vis(X, img_h=28, img_w=28, img_c=1, pad=1, norm_img=True,
     plt.axis('off')
     plt.show()
     
-def plot_loss_evolution(D_loss, G_loss):
+def plot_loss_evolution(D_loss, G_loss, gan_type='GAN'):
     plt.figure()
-    plt.title('Loss')
+    plt.title(f'{gan_type} training loss')
     plt.plot(range(1, len(D_loss)), D_loss[1:], label='D_loss')
     plt.plot(range(1, len(G_loss)), G_loss[1:], label='G_loss')
     plt.ylabel('x_entropy loss')

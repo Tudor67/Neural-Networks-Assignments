@@ -4,7 +4,7 @@ from gan import GAN
 
 class DCGAN(GAN):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs, gan_name='dc_gan')
+        super().__init__(**kwargs, gan_type='DCGAN')
 
     def generator(self, z):
         img_h, img_w, img_c = self.img_hwc
