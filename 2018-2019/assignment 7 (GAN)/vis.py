@@ -35,3 +35,13 @@ def grid_vis(X, img_h=28, img_w=28, img_c=1, pad=1, norm_img=True,
     plt.imshow(grid_imgs.squeeze(), cmap='gray')
     plt.axis('off')
     plt.show()
+    
+def plot_loss_evolution(D_loss, G_loss):
+    plt.figure()
+    plt.title('Loss')
+    plt.plot(range(1, len(D_loss)), D_loss[1:], label='D_loss')
+    plt.plot(range(1, len(G_loss)), G_loss[1:], label='G_loss')
+    plt.ylabel('x_entropy loss')
+    plt.xlabel('epoch')
+    plt.legend()
+    plt.show()
