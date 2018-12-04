@@ -84,7 +84,7 @@ class GAN:
             generated_images = sess.run(generate_images)
         return generated_images
 
-    def train(self, X, batch_size=128, num_epochs=5, print_every=None, lr=1e-3, beta1=0.5):
+    def train(self, X, batch_size=128, num_epochs=5, print_every=None, lr=2e-4, beta1=0.5):
         tf.reset_default_graph()
 
         with tf.name_scope('input'):
