@@ -47,6 +47,7 @@ __Discriminator__
 * lr: 1e-3 (VanillaGAN) | 2e-4 (DCGAN)
 
 ## Results
+![gan_results](./images/gan_results.png)
 
 ## Experiments: Playing with hyperparameters
 

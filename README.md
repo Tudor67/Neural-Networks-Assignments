@@ -9,7 +9,7 @@ Neural networks assignments from University Politehnica of Bucharest
 - [x] A4: Text generation with Recurrent Neural Networks (RNNs)
 - [x] A5: Image generation with Restricted Boltzmann Machines (RBMs)
 - [x] A6: Image generation with Variational Autoencoders (VAEs)
-- [ ] A7: Image generation with Generative Adversarial Networks (GANs)
+- [x] A7: Image generation with Generative Adversarial Networks (GANs)
 - [ ] Project: Saliency maps
 
 ## Assignments (2017-2018)
