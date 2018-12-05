@@ -49,7 +49,8 @@ __Discriminator__
 ## Results
 ![gan_results](./images/gan_results.png)
 
-## Experiments: Playing with hyperparameters
+## Experiments: Playing with some hyperparameters
+![playing_with_different_learning_rates](./images/playing_with_different_learning_rates.png)
 
 ## References
 1. [How to Train a GAN? Tips and tricks to make GANs work](https://github.com/soumith/ganhacks)
