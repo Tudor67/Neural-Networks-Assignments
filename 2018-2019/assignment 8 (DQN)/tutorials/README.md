@@ -1,7 +1,7 @@
 # Tutorials
 
 ## DQN experiments on SpaceInvaders-Atari2600
-![dqn_experiment_1](./results/dqn_experiment_1.png)
-![dqn_experiment_1_episode_300](./results/dqn_experiment_1_episode_300.gif)
+![rmsprop](./results/rmsprop.png)
+![rmsprop_train_episode_3](./results/rmsprop_train_episode_3_reward_805.gif)
 ___
 
