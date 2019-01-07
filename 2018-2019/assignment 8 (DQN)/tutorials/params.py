@@ -11,7 +11,7 @@ GENERAL_ACTIONS = np.identity(8, dtype=int)
 POSSIBLE_ACTIONS = GENERAL_ACTIONS[[0,1,6,7]]
 
 # Training
-NUM_EPISODES = 3
+NUM_EPISODES = 300
 MAX_STEPS_PER_EPISODE = 50_000
 BATCH_SIZE = 64
 LEARNING_RATE = 5e-4
@@ -29,6 +29,6 @@ PRETRAIN_LENGTH = BATCH_SIZE
 # Fixed Q-targets
 Q_TARGET_UPDATE_FREQ = 10_000
 
-# Save the model every 10 episodes
-SAVE_EVERY = 1
+# Save the model every 50 episodes
+SAVE_EVERY = 50
 SAVE_PATH = './checkpoints'
