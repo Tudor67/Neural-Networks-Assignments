@@ -1,6 +1,6 @@
 # Assignment 8 (2018-2019)
 __Deep Q-Networks (DQNs)__  
-I trained DQNs on Breakout and SpaceInvaders-Atari2600 (details and results for SpaceInvaders can be found in `tutorials`).
+I trained DQNs on Breakout and SpaceInvaders-Atari2600 (details and results for SpaceInvaders can be found in `./tutorials`).
 
 ## CNN architecture and training details
 

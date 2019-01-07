@@ -5,7 +5,7 @@ import os
 import sys
 
 def save_ani(episode, reward, frames, fps=50, skip_frames=4, 
-             out_path='./results/', mode='train'):
+             out_path='./animations/', mode='train'):
     if not os.path.exists(out_path):
         os.makedirs(out_path)
     
@@ -32,4 +32,5 @@ def save_train_ani(dir_name='./train_stats'):
         frames = np.load(f'./train_stats/{filename}')
         episode = int(filename.split('_')[2].split('.')[0])
         reward = int(filename.split('_')[4].split('.')[0])
-        save_ani(episode, reward, frames, out_path='./results/', mode='train')
+        save_ani(episode, reward, frames, fps=15, skip_frames=2, 
+                 out_path='./animations/train/', mode='train')
