@@ -30,6 +30,6 @@ def stack_frames(stacked_frames, state, is_new_episode):
         stacked_frames.append(frame)
     stacked_states = np.moveaxis(stacked_frames, 0, -1)
     
-    # stacked_states.shape: [210, 160, 12]
-    # stacked_frames.shape: [12, 210, 160]
+    # stacked_states.shape: [84, 84, 4]
+    # stacked_frames.shape: [4, 84, 84]
     return stacked_states, stacked_frames
