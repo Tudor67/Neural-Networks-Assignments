@@ -11,7 +11,7 @@ Neural networks assignments from University Politehnica of Bucharest
 - [x] A6: Image generation with Variational Autoencoders (VAEs)
 - [x] A7: Image generation with Generative Adversarial Networks (GANs)
 - [ ] A8_1: Deep Q-Networks (DQNs) on Atari-2600 games
-- [ ] A8_2: Proof of Policy Gradient Theorem (PGT)
+- [x] A8_2: Proof of Policy Gradient Theorem (PGT)
 - [ ] A9: Advantage Actor-Critic (A2C)
 - [ ] Project: Saliency maps
 
