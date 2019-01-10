@@ -1,5 +1,5 @@
 # Assignment 8 (2018-2019)
-__Proof of Policy Gradient Theorem (PGTs)__  
+__Proof of Policy Gradient Theorem (PGT)__  
 ![pgt_1](./images/pgt_1.jpg)
 ![pgt_2](./images/pgt_2.jpg)
 ![pgt_3](./images/pgt_3.jpg)
