@@ -1,6 +1,10 @@
+**/checkpoints/
 **/datasets/
 **/experiments/
+**/gym/
+**/gym-retro/
 **/old_experiments/
+**/roms/
 
 **/saved_models/
 
