@@ -10,7 +10,7 @@ Neural networks assignments from University Politehnica of Bucharest
 - [x] A5: Image generation with Restricted Boltzmann Machines (RBMs)
 - [x] A6: Image generation with Variational Autoencoders (VAEs)
 - [x] A7: Image generation with Generative Adversarial Networks (GANs)
-- [ ] A8_1: Deep Q-Networks (DQNs) on Atari-2600 games
+- [x] A8_1: Deep Q-Networks (DQNs) on Atari-2600 games
 - [x] A8_2: Proof of Policy Gradient Theorem (PGT)
 - [ ] A9: Advantage Actor-Critic (A2C)
 - [ ] Project: Saliency maps

@@ -1,6 +1,14 @@
 # Assignment 8 (2018-2019)
 __Deep Q-Networks (DQNs) on Atari-2600 games__
 
+## Steps to follow
+1. Install `TensorFlow` and `OpenAI Gym`;
+2. Modify hyperparameters, constants and the game name from `config.py` file;
+3. Run `DQN_train.ipynb` to train a dqn with the settings from the `config.py`;
+4. Run `DQN_test.ipynb` to evaluate your model and to save some animations.
+
+* Feel free to experiment different architectures and preprocessing methods by changing `dqn.py` and `preprocessing.py`.
+
 ## DQN: architecture and training details
 ![dqn_details](./images/dqn_details.png)
 

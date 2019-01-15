@@ -13,8 +13,6 @@ class DQN:
                                              [None], name='action')
             self.Q_target_ph = tf.placeholder(tf.float32,
                                              [None], name='target')
-            self.learning_rate_ph = tf.placeholder(tf.float32,
-                                                   (), name='learning_rate')
             
             self.actions_one_hot = tf.one_hot(self.actions_ph, self.action_size)
             initializer = tf.initializers.he_uniform()
