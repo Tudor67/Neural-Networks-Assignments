@@ -64,7 +64,7 @@ class A2C:
             
             # td-error
             with tf.name_scope('td_error'):
-                self.td_error = self.predicted_value - self.target_ph
+                self.td_error = self.predicted_value - tf.stop_gradient(self.target_ph)
             
             # loss
             with tf.name_scope('loss'):
@@ -77,10 +77,6 @@ class A2C:
             
             # optimization
             with tf.name_scope('optimization'):
-                self.optimizer = tf.train.RMSPropOptimizer(config.LEARNING_RATE,
-                                                           decay=config.DECAY,
-                                                           momentum=config.MOMENTUM,
-                                                           epsilon=config.EPSILON,
-                                                           centered=config.CENTERED)
+                self.optimizer = tf.train.RMSPropOptimizer(config.LEARNING_RATE)
                 self.actor_optimization_step = self.optimizer.minimize(self.actor_loss)
                 self.critic_optimization_step = self.optimizer.minimize(self.critic_loss)

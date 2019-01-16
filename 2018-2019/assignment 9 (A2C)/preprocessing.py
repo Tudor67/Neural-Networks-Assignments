@@ -13,12 +13,7 @@ def preprocess_frame(rgb_frame):
                                              [config.FRAME_H, config.FRAME_W], 
                                              mode='constant',
                                              anti_aliasing=False)
-    
-    # uint8
-    resized_frame *= 255
-    preprocessed_frame = resized_frame.astype(np.uint8)
-    
-    return preprocessed_frame
+    return resized_frame
 
 def stack_frames(stacked_frames, state, is_new_episode):
     frame = preprocess_frame(state)
