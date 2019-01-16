@@ -7,9 +7,10 @@ __Advantage Actor-Critic (A2C) on Atari-2600 games__
 3. Run `A2C_train.ipynb` to train a dqn with the settings from the `config.py`;
 4. Run `A2C_test.ipynb` to evaluate your model and to save some animations.
 
-* Feel free to experiment different architectures and preprocessing methods by changing `dqn.py` and `preprocessing.py`.
+* Feel free to experiment different architectures and preprocessing methods by changing `a2c.py` and `preprocessing.py`.
 
 ## A2C: architecture and training details
+![a2c_details](./images/a2c_details.png)
 
 ## Results
 
