@@ -25,11 +25,14 @@ Folder structure:
     │   │   ├── ground_truth
     │   │   ├── image_download
     │   │   ├── images
-    │   │   ├── images\_subset5\_cvpr10
+    │   │   ├── images_subset5_cvpr10
     │   │   ├── subset_80
     │   │   │   ├── ground_truth
     │   │   │   ├── images
-    │   │   │   └── img_list.txt
+    │   │   │   ├── img_list.txt
+    │   │   │   ├── train.txt
+    │   │   │   ├── val.txt
+    │   │   │   └── test.txt
     │   │   ├── readme.txt
     │   │   └── ...
     │   └── ...
