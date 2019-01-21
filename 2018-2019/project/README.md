@@ -9,9 +9,30 @@ __Image segmentation with saliency maps__
     - `pip install git+https://github.com/raghakot/keras-vis.git`
 
 ## Datasets
-* __CMU-Cornell iCoseg dataset__
-   * Download the dataset from: http://chenlab.ece.cornell.edu/downloads.html
-   * Look at some groups of images: http://chenlab.ece.cornell.edu/projects/touch-coseg/iCoseg_dataset.pdf
+### __CMU-Cornell iCoseg dataset__
+1. Look at some groups of images: http://chenlab.ece.cornell.edu/projects/touch-coseg/iCoseg_dataset.pdf
+2. Download the dataset from: http://chenlab.ece.cornell.edu/downloads.html
+3. Move dataset folders inside the `./datasets/`
+4. Copy 80 images and their ground truths from `./datasets/icoseg/images/...` and `./datasets/icoseg/ground_truth/...` to `./datasets/icoseg/subset_80/images` and `./datasets/icoseg/subset_80/grund_truth`.
+The list of images to be copied: `./datasets/icoseg/subset_80/img_list.txt`.
+   
+    Folder structure:
+    .
+    ├── ...
+    ├── datasets
+    │   ├── icoseg
+    │   │   ├── ground_truth
+    │   │   ├── image_download
+    │   │   ├── images
+    │   │   ├── images\_subset5\_cvpr10
+    │   │   ├── subset_80
+    │   │   │   ├── ground_truth
+    │   │   │   ├── images
+    │   │   │   └── img_list.txt
+    │   │   ├── readme.txt
+    │   │   └── ...
+    │   └── ...
+    └── ...
 
 ## Evaluation
 
