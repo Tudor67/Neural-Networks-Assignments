@@ -1,16 +1,39 @@
 import numpy as np
 import os
+import skimage
 import sys
 
-def load_dataset(path):
-    img_names = os.listdir(path + '/images')
+def load_icoseg_subset_80():
+    path = '../datasets/icoseg/subset_80'
+    
+    train_list = read_img_list(f'{path}/train.txt')
+    train = np.array(load_dataset(path, train_list, add_img_format=True))
+    
+    val_list = read_img_list(f'{path}/val.txt')
+    val = np.array(load_dataset(path, val_list, add_img_format=True))
+    
+    test_list = read_img_list(f'{path}/test.txt')
+    test = np.array(load_dataset(path, test_list, add_img_format=True))
+    
+    return train, val, test
+
+def load_dataset(path, img_names=None, add_img_format=False):
+    if img_names is None:
+        img_names = os.listdir(path + '/images')
     
     images = []
     masks = []
     
     for img_name in img_names:
-        img = skimage.io.imread(path + '/images/' + img_name)
-        mask = skimage.io.imread(path + '/ground_truth/' + img_name)
+        img_path = path + '/images/' + img_name
+        mask_path = path + '/ground_truth/' + img_name
+        
+        if add_img_format:
+            img_path += '.jpg'
+            mask_path += '.png'
+            
+        img = skimage.io.imread(img_path)
+        mask = skimage.io.imread(mask_path)
         
         images.append(img)
         masks.append(mask)
@@ -37,6 +60,11 @@ def write_img_list(img_list, filename):
     with open(filename, 'w') as fo:
         for img_name in img_list:
             fo.write(img_name + '\n')
+            
+def read_img_list(filename):
+    with open(filename, 'r') as fi:
+        img_list = fi.read().split()
+    return img_list
 
 def create_img_list_from_dir(path):
     full_img_names = os.listdir(path + '/images')
