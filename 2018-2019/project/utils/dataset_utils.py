@@ -17,6 +17,20 @@ def load_icoseg_subset_80():
     
     return train, val, test
 
+def load_icoseg_subset_80_with_img_names():
+    path = '../datasets/icoseg/subset_80'
+    
+    train_img_names = read_img_list(f'{path}/train.txt')
+    train = np.array(load_dataset(path, train_img_names, add_img_format=True))
+    
+    val_img_names = read_img_list(f'{path}/val.txt')
+    val = np.array(load_dataset(path, val_img_names, add_img_format=True))
+    
+    test_img_names = read_img_list(f'{path}/test.txt')
+    test = np.array(load_dataset(path, test_img_names, add_img_format=True))
+    
+    return train, train_img_names, val, val_img_names, test, test_img_names
+
 def load_dataset(path, img_names=None, add_img_format=False):
     if img_names is None:
         img_names = os.listdir(path + '/images')
