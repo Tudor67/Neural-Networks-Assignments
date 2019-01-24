@@ -66,8 +66,42 @@ def crop_images_and_save(images, img_names,
             for j in range(img_patches.shape[1]):
                 filename = f'{save_path}/{img_name}_{i}_{j}.{img_format}'
                 skimage.io.imsave(filename, img_patches[i][j])
-                
-                
+
+def load_patches(img_name, patches_path):
+    patches_names_all = os.listdir(patches_path)
+    patches = []
+    max_row = 0
+    
+    for patch_name in sorted(patches_names_all):
+        if patch_name.startswith(img_name):
+            patch = skimage.io.imread(f'{patches_path}/{patch_name}')
+            patches.append(patch)
+            
+            # useful for patches.reshape
+            patch_shape = patch.shape
+            row = 1 + int(patch_name.split('_')[-2])
+            max_row = max(max_row, row)
+            
+    patches = np.array(patches).astype(np.uint8).reshape(max_row, -1, *patch_shape)
+    return patches                
+
+def get_img_shapes(images):
+    return [img.shape for img in images]
+
+def merge_patches_and_save(img_shapes, img_names, patches_path,
+                           save_path, img_format):
+    
+    if not os.path.isdir(save_path):
+        os.makedirs(save_path)
+    
+    for img_shape, img_name in zip(img_shapes, img_names):
+        img_h, img_w = img_shape[:2]
+        patches = load_patches(img_name, patches_path)
+        img_from_patches = merge_patches(patches, img_h=img_h, img_w=img_w)
+        
+        filename = f'{save_path}/{img_name}.{img_format}'
+        skimage.io.imsave(filename, img_from_patches)
+
 def crop_images_and_save_all(dataset_with_img_names, dataset_path,
                              img_format='png', patch_h=256, patch_w=256):
     
@@ -92,3 +126,30 @@ def crop_images_and_save_all(dataset_with_img_names, dataset_path,
                              img_format=img_format,
                              patch_h=patch_h,
                              patch_w=patch_w)
+        
+def merge_patches_and_save_all(dataset_with_img_names,
+                               dataset_path,
+                               img_format='png'):
+    
+    # dataset splits
+    train, train_img_names, val, val_img_names, test, test_img_names = dataset_with_img_names
+    train_images, train_masks = train
+    val_images, val_masks = val
+    test_images, test_masks = test
+    
+    d_splits = [(train_images, train_img_names, 'train_img'),
+                (train_masks, train_img_names, 'train_mask'),
+                (val_images, val_img_names, 'val_img'),
+                (val_masks, val_img_names, 'val_mask'),
+                (test_images, test_img_names, 'test_img'),
+                (test_masks, test_img_names, 'test_mask')]
+    
+    for images, img_names, split_name in d_splits:
+        patches_path = f'{dataset_path}/{split_name.split("_")[0]}/{split_name}_patches'
+        save_path = f'{dataset_path}/{split_name.split("_")[0]}/{split_name}_from_patches'
+        img_shapes = get_img_shapes(images)
+        
+        merge_patches_and_save(img_shapes, img_names,
+                               patches_path=patches_path,
+                               save_path=save_path,
+                               img_format=img_format)
