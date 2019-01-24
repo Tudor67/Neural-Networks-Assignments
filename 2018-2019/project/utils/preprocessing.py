@@ -71,29 +71,24 @@ def crop_images_and_save(images, img_names,
 def crop_images_and_save_all(dataset_with_img_names, dataset_path,
                              img_format='png', patch_h=256, patch_w=256):
     
+    # dataset splits
     train, train_img_names, val, val_img_names, test, test_img_names = dataset_with_img_names
     train_images, train_masks = train
     val_images, val_masks = val
     test_images, test_masks = test
     
-    # train split
-    crop_images_and_save(train_images, train_img_names,
-                         save_path=f'{dataset_path}/train_img_patches',
-                         img_format=img_format, patch_h=patch_h, patch_w=patch_w)
-    crop_images_and_save(train_masks, train_img_names,
-                         save_path=f'{dataset_path}/train_mask_patches',
-                         img_format=img_format, patch_h=patch_h, patch_w=patch_w)
-    # val split
-    crop_images_and_save(val_images, val_img_names,
-                         save_path=f'{dataset_path}/val_img_patches',
-                         img_format=img_format, patch_h=patch_h, patch_w=patch_w)
-    crop_images_and_save(val_masks, val_img_names,
-                         save_path=f'{dataset_path}/val_mask_patches',
-                         img_format=img_format, patch_h=patch_h, patch_w=patch_w)
-    # test split
-    crop_images_and_save(test_images, test_img_names,
-                         save_path=f'{dataset_path}/test_img_patches',
-                         img_format=img_format, patch_h=patch_h, patch_w=patch_w)
-    crop_images_and_save(test_masks, test_img_names,
-                         save_path=f'{dataset_path}/test_mask_patches',
-                         img_format=img_format, patch_h=patch_h, patch_w=patch_w)
+    d_splits = [(train_images, train_img_names, 'train_img'),
+                (train_masks, train_img_names, 'train_mask'),
+                (val_images, val_img_names, 'val_img'),
+                (val_masks, val_img_names, 'val_mask'),
+                (test_images, test_img_names, 'test_img'),
+                (test_masks, test_img_names, 'test_mask')]
+    
+    for images, img_names, split_name in d_splits:
+        save_path=f'{dataset_path}/{split_name.split("_")[0]}/{split_name}_patches'
+    
+        crop_images_and_save(images, img_names,
+                             save_path=save_path,
+                             img_format=img_format,
+                             patch_h=patch_h,
+                             patch_w=patch_w)
