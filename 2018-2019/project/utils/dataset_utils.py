@@ -54,6 +54,25 @@ def load_dataset(path, img_names=None, add_img_format=False):
     
     return images, masks
 
+def load_dataset_split(dataset_path, split_name):
+    img_path = f'{dataset_path}/{split_name}/{split_name}_img_patches'
+    mask_path = f'{dataset_path}/{split_name}/{split_name}_mask_patches'
+    
+    img_names = os.listdir(img_path)
+    images = []
+    masks = []
+    
+    for img_name in img_names:
+        img = skimage.io.imread(f'{img_path}/{img_name}')
+        mask = skimage.io.imread(f'{mask_path}/{img_name}')
+        images.append(img)
+        masks.append(mask)
+        
+    images = np.array(images) / 255.
+    masks = np.array(masks) / 255.
+    
+    return images, masks, img_names
+
 def split_dataset(img_list, train_size=50, val_size=10, test_size=20, random_seed=None):
     np.random.seed(random_seed)
     indices = np.random.choice(len(img_list),
