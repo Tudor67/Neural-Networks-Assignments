@@ -110,3 +110,13 @@ def create_img_list_from_dir(path):
             img_names.append(img_name)
     
     return img_names
+
+def load_images_from_list(img_names, path):
+    images = []
+    for img_name in img_names:
+        img = skimage.io.imread(f'{path}/{img_name}')
+        images.append(img)
+        
+    images = np.array(images)
+    
+    return images
