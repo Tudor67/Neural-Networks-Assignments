@@ -2,6 +2,8 @@ from keras.layers import *
 from keras.models import *
 from keras.optimizers import *
 
+from utils import evaluation
+
 def unet(input_size=(256, 256, 3), pretrained_weights=None):
     # common params
     params = {
@@ -69,7 +71,9 @@ def unet(input_size=(256, 256, 3), pretrained_weights=None):
     model = Model(inputs=inputs, outputs=conv10)
     model.compile(optimizer=Adam(lr=1e-4),
                   loss='binary_crossentropy',
-                  metrics=['acc'])
+                  metrics=['acc',
+                           evaluation.tf_jaccard,
+                           evaluation.tf_dice])
     
     if pretrained_weights is not None:
         model.load_weights(pretrained_weights)

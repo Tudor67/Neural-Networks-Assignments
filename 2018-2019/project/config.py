@@ -1,0 +1,5 @@
+
+PRED_THR = 0.25
+
+BATCH_SIZE = 1
+NUM_EPOCHS = 25
