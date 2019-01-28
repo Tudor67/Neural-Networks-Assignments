@@ -120,3 +120,11 @@ def load_images_from_list(img_names, path):
     images = np.array(images)
     
     return images
+        
+def save_images(images, img_names, path):
+    if not os.path.isdir(path):
+        os.makedirs(path)
+    
+    for img, img_name in zip(images, img_names):
+        filename = f'{path}/{img_name}'
+        skimage.io.imsave(filename, img)
