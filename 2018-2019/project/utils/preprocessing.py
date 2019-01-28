@@ -88,6 +88,24 @@ def load_patches(img_name, patches_path):
 def get_img_shapes(images):
     return [img.shape for img in images]
 
+def remove_img_format(img_names):
+    return [''.join(img_name.split('.')[:-1]) for img_name in img_names]
+
+def remove_grid_indices(img_names):
+    return [''.join(img_name.split('_')[:-2]) for img_name in img_names]
+
+def append_img_name_with_h_w(img_names, img_shapes):
+    return [f'{img_name}_{img_shape[0]}_{img_shape[1]}'
+            for img_name, img_shape in zip(img_names, img_shapes)]
+
+def get_img_shapes_from_strings(img_names):
+    img_shapes = []
+    for img_name in img_names:
+        h = img_name.split('_')[-4]
+        w = img_name.split('_')[-3]
+        img_shapes.append((h, w))
+    return img_shapes
+
 def merge_patches_and_save(img_shapes, img_names, patches_path,
                            save_path, img_format):
     
@@ -103,13 +121,19 @@ def merge_patches_and_save(img_shapes, img_names, patches_path,
         skimage.io.imsave(filename, img_from_patches)
 
 def crop_images_and_save_all(dataset_with_img_names, dataset_path,
-                             img_format='png', patch_h=256, patch_w=256):
+                             img_format='png', patch_h=256, patch_w=256, 
+                             append_img_h_w=False):
     
     # dataset splits
     train, train_img_names, val, val_img_names, test, test_img_names = dataset_with_img_names
     train_images, train_masks = train
     val_images, val_masks = val
     test_images, test_masks = test
+    
+    if append_img_h_w:
+        train_img_names = append_img_name_with_h_w(train_img_names, get_img_shapes(train_images))
+        val_img_names = append_img_name_with_h_w(val_img_names, get_img_shapes(val_images))
+        test_img_names = append_img_name_with_h_w(test_img_names, get_img_shapes(test_images))
     
     d_splits = [(train_images, train_img_names, 'train_img'),
                 (train_masks, train_img_names, 'train_mask'),
@@ -147,6 +171,7 @@ def merge_patches_and_save_all(dataset_with_img_names,
     for images, img_names, split_name in d_splits:
         patches_path = f'{dataset_path}/{split_name.split("_")[0]}/{split_name}_patches'
         save_path = f'{dataset_path}/{split_name.split("_")[0]}/{split_name}_from_patches'
+        
         img_shapes = get_img_shapes(images)
         
         merge_patches_and_save(img_shapes, img_names,
