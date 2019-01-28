@@ -88,11 +88,8 @@ def load_patches(img_name, patches_path):
 def get_img_shapes(images):
     return [img.shape for img in images]
 
-def remove_img_format(img_names):
-    return [''.join(img_name.split('.')[:-1]) for img_name in img_names]
-
 def remove_grid_indices(img_names):
-    return [''.join(img_name.split('_')[:-2]) for img_name in img_names]
+    return ['_'.join(img_name.split('_')[:-2]) for img_name in img_names]
 
 def append_img_name_with_h_w(img_names, img_shapes):
     return [f'{img_name}_{img_shape[0]}_{img_shape[1]}'
@@ -101,8 +98,8 @@ def append_img_name_with_h_w(img_names, img_shapes):
 def get_img_shapes_from_strings(img_names):
     img_shapes = []
     for img_name in img_names:
-        h = img_name.split('_')[-4]
-        w = img_name.split('_')[-3]
+        h = int(img_name.split('_')[-4])
+        w = int(img_name.split('_')[-3])
         img_shapes.append((h, w))
     return img_shapes
 
@@ -178,3 +175,21 @@ def merge_patches_and_save_all(dataset_with_img_names,
                                patches_path=patches_path,
                                save_path=save_path,
                                img_format=img_format)
+        
+def merge_patches_directly_and_save_all(results_path,
+                                        split_types=['pred'],
+                                        img_format='png'):
+    
+    for split_name in ['train', 'val', 'test']:
+        for split_type in split_types:
+            patches_path = f'{results_path}/{split_name}/{split_name}_{split_type}_patches'
+            save_path = f'{results_path}/{split_name}/{split_name}_{split_type}_from_patches'
+
+            img_names_full = os.listdir(patches_path)
+            img_names = remove_grid_indices(img_names_full)        
+            img_shapes = get_img_shapes_from_strings(img_names_full)
+
+            merge_patches_and_save(img_shapes, img_names,
+                                   patches_path=patches_path,
+                                   save_path=save_path,
+                                   img_format=img_format)
