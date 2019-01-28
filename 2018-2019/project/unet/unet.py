@@ -4,7 +4,7 @@ from keras.optimizers import *
 
 from utils import evaluation
 
-def unet(input_size=(256, 256, 3), pretrained_weights=None):
+def unet(input_shape=(256, 256, 3), pretrained_weights=None):
     # common params
     params = {
         'padding': 'same',
@@ -13,7 +13,7 @@ def unet(input_size=(256, 256, 3), pretrained_weights=None):
     }
     
     # input
-    inputs = Input(input_size)
+    inputs = Input(input_shape)
     
     # down1
     conv1 = Conv2D(64, 3, **params)(inputs)
