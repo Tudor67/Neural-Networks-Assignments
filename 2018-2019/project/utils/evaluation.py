@@ -36,6 +36,19 @@ def dice(a, b):
     
     return dice_coef
 
+def jaccard_and_dice(preds, gts, thr):
+    jaccard_and_dice_res = np.zeros((len(preds), 2))
+    
+    for idx, (pred, gt) in enumerate(zip(preds, gts)):
+        pred = (pred >= thr)
+        
+        jaccard_coef = jaccard(pred, gt)
+        dice_coef = dice(pred, gt)
+        
+        jaccard_and_dice_res[idx] = (jaccard_coef, dice_coef)
+        
+    return jaccard_and_dice_res
+
 # tensorflow implementation (with thr)
 def tf_get_tp_fp_fn(a_in, b_in):
     a = tf.greater_equal(a_in, config.PRED_THR)
