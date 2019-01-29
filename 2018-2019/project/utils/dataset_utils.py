@@ -128,3 +128,26 @@ def save_images(images, img_names, path):
     for img, img_name in zip(images, img_names):
         filename = f'{path}/{img_name}'
         skimage.io.imsave(filename, img)
+        
+def load_results(dataset_path, results_path, split_name='test',
+                 img_range=None, include_masks=True):
+    images_path = f'{dataset_path}/{split_name}/{split_name}_img_from_patches'
+    masks_path = f'{dataset_path}/{split_name}/{split_name}_mask_from_patches'
+    preds_path = f'{results_path}/{split_name}/{split_name}_pred_from_patches'
+
+    img_names = os.listdir(preds_path)
+    if img_range is not None:
+        img_names = np.array(sorted(img_names))[img_range]
+    
+    # images
+    images = load_images_from_list(img_names, images_path) / 255.
+    
+    # masks
+    masks = None
+    if include_masks:
+        masks = load_images_from_list(img_names, masks_path) / 255.
+    
+    # preds
+    preds = load_images_from_list(img_names, preds_path) / 255.
+    
+    return images, masks, preds
