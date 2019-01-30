@@ -72,7 +72,9 @@ def crop_images_from_dir_and_save_all(images_path, save_path,
     img_names = os.listdir(images_path)
     for img_name in img_names:
         img = skimage.io.imread(f'{images_path}/{img_name}')
-        crop_images_and_save([img], [img_name],
+        img_name_with_shape = append_img_name_with_h_w(remove_img_formats([img_name]),
+                                                       get_img_shapes([img]))[0]
+        crop_images_and_save([img], [img_name_with_shape],
                              save_path=save_path,
                              img_format=img_format,
                              patch_h=patch_h,
@@ -98,6 +100,9 @@ def load_patches(img_name, patches_path):
 
 def get_img_shapes(images):
     return [img.shape for img in images]
+
+def remove_img_formats(img_names):
+    return ['.'.join(img_name.split('.')[:-1]) for img_name in img_names]
 
 def remove_grid_indices(img_names):
     return ['_'.join(img_name.split('_')[:-2]) for img_name in img_names]
