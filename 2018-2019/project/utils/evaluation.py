@@ -64,7 +64,7 @@ def tf_get_tp_fp_fn(a_in, b_in):
     fp_count = tf.count_nonzero(fp_and)
     fp = tf.cast(fp_count, tf.float64)
     
-    fn_and = tf.logical_and(a, b)
+    fn_and = tf.logical_and(not_a, b)
     fn_count = tf.count_nonzero(fn_and)
     fn = tf.cast(fn_count, tf.float64)
     
