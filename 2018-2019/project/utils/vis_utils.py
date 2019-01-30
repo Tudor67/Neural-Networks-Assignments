@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def grid_vis(images, grid_rows=2, grid_cols=2, plt_axis='off',
-             grid_col_dim=5, grid_row_dim=5):
+             grid_col_dim=5, grid_row_dim=5, wspace=0.075, hspace=0.075):
     plt.figure(figsize=(grid_cols * grid_col_dim, grid_rows * grid_row_dim))
-    plt.subplots_adjust(wspace=0.075, hspace=0.075)
+    plt.subplots_adjust(wspace=wspace, hspace=hspace)
     
     for i in range(grid_rows):
         for j in range(grid_cols):
