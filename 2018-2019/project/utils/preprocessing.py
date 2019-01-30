@@ -209,3 +209,16 @@ def merge_patches_directly_and_save_all(results_path,
                                    patches_path=patches_path,
                                    save_path=save_path,
                                    img_format=img_format)
+            
+def merge_patches_from_dir_and_save_all(patches_path,
+                                        save_path,
+                                        img_format='png'):
+    
+    img_names_full = os.listdir(patches_path)
+    img_names = remove_grid_indices(img_names_full)        
+    img_shapes = get_img_shapes_from_strings(img_names_full)
+
+    merge_patches_and_save(img_shapes, img_names,
+                           patches_path=patches_path,
+                           save_path=save_path,
+                           img_format=img_format)
