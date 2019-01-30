@@ -66,7 +66,18 @@ def crop_images_and_save(images, img_names,
             for j in range(img_patches.shape[1]):
                 filename = f'{save_path}/{img_name}_{i}_{j}.{img_format}'
                 skimage.io.imsave(filename, img_patches[i][j])
-
+                
+def crop_images_from_dir_and_save_all(images_path, save_path,
+                                      patch_h, patch_w, img_format):
+    img_names = os.listdir(images_path)
+    for img_name in img_names:
+        img = skimage.io.imread(f'{images_path}/{img_name}')
+        crop_images_and_save([img], [img_name],
+                             save_path=save_path,
+                             img_format=img_format,
+                             patch_h=patch_h,
+                             patch_w=patch_w)
+        
 def load_patches(img_name, patches_path):
     patches_names_all = os.listdir(patches_path)
     patches = []
