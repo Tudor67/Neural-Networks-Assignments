@@ -67,13 +67,19 @@ def crop_images_and_save(images, img_names,
                 filename = f'{save_path}/{img_name}_{i}_{j}.{img_format}'
                 skimage.io.imsave(filename, img_patches[i][j])
                 
-def crop_images_from_dir_and_save_all(images_path, save_path,
-                                      patch_h, patch_w, img_format):
+def crop_images_from_dir_and_save_all(images_path, save_path, patch_h, patch_w,
+                                      img_format, append_h_w=True):
     img_names = os.listdir(images_path)
     for img_name in img_names:
         img = skimage.io.imread(f'{images_path}/{img_name}')
-        img_name_with_shape = append_img_name_with_h_w(remove_img_formats([img_name]),
-                                                       get_img_shapes([img]))[0]
+        
+        img_name_with_shape = None
+        if append_h_w:
+            img_name_with_shape = append_img_name_with_h_w(remove_img_formats([img_name]),
+                                                           get_img_shapes([img]))[0]
+        else:
+            img_name_with_shape = remove_img_formats([img_name])[0]
+        
         crop_images_and_save([img], [img_name_with_shape],
                              save_path=save_path,
                              img_format=img_format,
