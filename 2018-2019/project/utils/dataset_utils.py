@@ -136,7 +136,7 @@ def load_results(dataset_path, results_path, split_name='test',
     masks_path = f'{dataset_path}/{split_name}/{split_name}_mask_from_patches'
     preds_path = f'{results_path}/{split_name}/{split_name}_pred_from_patches'
 
-    img_names = os.listdir(preds_path)
+    img_names = sorted(os.listdir(preds_path))
     if img_range is not None:
         img_names = np.array(sorted(img_names))[img_range]
     
@@ -152,3 +152,31 @@ def load_results(dataset_path, results_path, split_name='test',
     preds = load_images_from_list(img_names, preds_path) / 255.
     
     return images, masks, preds
+
+def load_results_with_sal_maps(dataset_path, results_path, split_name='test',
+                               img_range=None, include_masks=True, backprop_modifier='guided'):
+    images_path = f'{dataset_path}/{split_name}/{split_name}_img_from_patches'
+    sal_maps_path = f'{dataset_path}/{split_name}'\
+                    f'/{split_name}_{backprop_modifier}_sal_from_patches'
+    masks_path = f'{dataset_path}/{split_name}/{split_name}_mask_from_patches'
+    preds_path = f'{results_path}/{split_name}/{split_name}_pred_from_patches'
+
+    img_names = os.listdir(preds_path)
+    if img_range is not None:
+        img_names = np.array(sorted(img_names))[img_range]
+    
+    # images
+    images = load_images_from_list(img_names, images_path) / 255.
+    
+    # sal_maps
+    sal_maps = load_images_from_list(img_names, sal_maps_path) / 255.
+    
+    # masks
+    masks = None
+    if include_masks:
+        masks = load_images_from_list(img_names, masks_path) / 255.
+    
+    # preds
+    preds = load_images_from_list(img_names, preds_path) / 255.
+    
+    return images, sal_maps, masks, preds
