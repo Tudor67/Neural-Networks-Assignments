@@ -1,0 +1,4 @@
+,,Train,Train,Val,Val,Test,Test
+,,IoU,Dice,IoU,Dice,IoU,Dice
+Experiment name,Dataset name,,,,,,
+UNet_SAL_MAP_DECONV,icoseg/subset_80,0.0 ± 0.0,0.0 ± 0.0,0.0 ± 0.0,0.0 ± 0.0,0.0 ± 0.0,0.0 ± 0.0

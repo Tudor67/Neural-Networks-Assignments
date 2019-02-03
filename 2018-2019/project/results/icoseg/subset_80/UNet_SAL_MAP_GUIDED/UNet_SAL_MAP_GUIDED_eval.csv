@@ -1,0 +1,4 @@
+,,Train,Train,Val,Val,Test,Test
+,,IoU,Dice,IoU,Dice,IoU,Dice
+Experiment name,Dataset name,,,,,,
+UNet_SAL_MAP_GUIDED,icoseg/subset_80,0.405 ± 0.143,0.561 ± 0.147,0.412 ± 0.166,0.563 ± 0.183,0.407 ± 0.148,0.562 ± 0.16
