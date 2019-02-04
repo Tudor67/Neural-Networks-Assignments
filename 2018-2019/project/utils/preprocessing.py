@@ -210,8 +210,17 @@ def merge_patches_directly_and_save_all(results_path,
             img_names_full = os.listdir(patches_path)
             img_names = remove_grid_indices(img_names_full)        
             img_shapes = get_img_shapes_from_strings(img_names_full)
+            
+            # remove the same img_names (duplicates)
+            unique_img_names = []
+            unique_img_shapes = []
+            for img_name, img_shape in zip(img_names, img_shapes):
+                if img_name not in unique_img_names:
+                    unique_img_names.append(img_name)
+                    unique_img_shapes.append(img_shape)
 
-            merge_patches_and_save(img_shapes, img_names,
+            merge_patches_and_save(unique_img_shapes,
+                                   unique_img_names,
                                    patches_path=patches_path,
                                    save_path=save_path,
                                    img_format=img_format)
@@ -221,10 +230,19 @@ def merge_patches_from_dir_and_save_all(patches_path,
                                         img_format='png'):
     
     img_names_full = os.listdir(patches_path)
-    img_names = remove_grid_indices(img_names_full)        
+    img_names = remove_grid_indices(img_names_full)
     img_shapes = get_img_shapes_from_strings(img_names_full)
+    
+    # remove the same img_names (duplicates)
+    unique_img_names = []
+    unique_img_shapes = []
+    for img_name, img_shape in zip(img_names, img_shapes):
+        if img_name not in unique_img_names:
+            unique_img_names.append(img_name)
+            unique_img_shapes.append(img_shape)
 
-    merge_patches_and_save(img_shapes, img_names,
+    merge_patches_and_save(unique_img_shapes,
+                           unique_img_names,
                            patches_path=patches_path,
                            save_path=save_path,
                            img_format=img_format)
