@@ -1,4 +1,4 @@
-BACKPROP_MODIFIER = 'None'
+BACKPROP_MODIFIER = 'guided'
 UNET_NAME = f'UNet_RGB_SAL_MAP_{BACKPROP_MODIFIER.upper()}'
 #UNET_NAME = f'UNet_RGB'
 #DATASET_NAME = 'icoseg/subset_80'
