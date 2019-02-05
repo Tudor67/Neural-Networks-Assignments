@@ -1,0 +1,4 @@
+,,Train,Train,Val,Val,Test,Test
+,,IoU,Dice,IoU,Dice,IoU,Dice
+Experiment name,Dataset name,,,,,,
+UNet_RGB_SAL_MAP_NONE,inria_aerial/subset_chicago,0.754 ± 0.019,0.86 ± 0.0124,0.672 ± 0.0,0.804 ± 0.0,0.552 ± 0.0,0.712 ± 0.0
