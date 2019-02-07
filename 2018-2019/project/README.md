@@ -2,11 +2,8 @@
 __Image segmentation with saliency maps__
 
 ## Poster
-<object data="https://github.com/Tudor67/Neural-Networks-Assignments/blob/master/2018-2019/project/presentations/Tudor_Buzu_NN_Poster.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://github.com/Tudor67/Neural-Networks-Assignments/blob/master/2018-2019/project/presentations/Tudor_Buzu_NN_Poster.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/Tudor67/Neural-Networks-Assignments/blob/master/2018-2019/project/presentations/Tudor_Buzu_NN_Poster.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+![poster_1](./presentations/Tudor_Buzu_NN_Poster-1.png)
+![poster_2](./presentations/Tudor_Buzu_NN_Poster-2.png)
 
 ## Installation
 1. Python 3.6
@@ -20,8 +17,10 @@ __Image segmentation with saliency maps__
 1. Look at some groups of images: http://chenlab.ece.cornell.edu/projects/touch-coseg/iCoseg_dataset.pdf;
 2. Download the dataset from: http://chenlab.ece.cornell.edu/downloads.html;
 3. Move dataset folders inside the `./datasets/`;
-4. Copy 80 images and their ground truths from `./datasets/icoseg/images/...` and `./datasets/icoseg/ground_truth/...` to `./datasets/icoseg/subset_80/images` and `./datasets/icoseg/subset_80/grund_truth`.
-The list of images to be copied: `./datasets/icoseg/subset_80/img_list.txt`.  
+4. Copy 80 images and their ground truths (list of images to be copied: `./datasets/icoseg/subset_80/img_list.txt`).  
+`./datasets/icoseg/images/...` -> `./datasets/icoseg/subset_80/images`  
+`./datasets/icoseg/ground_truth/...` -> `./datasets/icoseg/subset_80/grund_truth`.
+  
 
 Folder structure:
 

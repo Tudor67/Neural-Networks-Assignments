@@ -13,7 +13,7 @@ Neural networks assignments from University Politehnica of Bucharest
 - [x] A8_1: Deep Q-Networks (DQNs) on Atari-2600 games
 - [x] A8_2: Proof of Policy Gradient Theorem (PGT)
 - [ ] A9: Advantage Actor-Critic (A2C) on Atari-2600 games
-- [ ] Project: Image segmentation with saliency maps
+- [x] Project: Image segmentation with saliency maps
 
 ## Assignments (2017-2018)
 - [x] A1: FCNet (SGD)
