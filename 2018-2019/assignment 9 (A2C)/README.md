@@ -3,7 +3,7 @@ __Advantage Actor-Critic (A2C) on Atari-2600 games__
 
 ## Steps to follow
 1. Install `TensorFlow` and `OpenAI Gym`;
-2. Modify hyperparameters, constants and the game name from `config.py` file;
+2. Modify hyperparameters, constants and game name in `config.py`;
 3. Run `A2C_train.ipynb` to train a dqn with the settings from the `config.py`;
 4. Run `A2C_test.ipynb` to evaluate your model and to save some animations.
 
@@ -13,6 +13,8 @@ __Advantage Actor-Critic (A2C) on Atari-2600 games__
 ![a2c_details](./images/a2c_details.png)
 
 ## Results
+Unfortunately I couldn't obtain good results with this implementation/architecture/hyperparameters.
+More investigation is needed.
 
 ## Some notes
 * Value-based methods have __high variability__. To reduce this we can use the _advantage function_ instead of the value function.

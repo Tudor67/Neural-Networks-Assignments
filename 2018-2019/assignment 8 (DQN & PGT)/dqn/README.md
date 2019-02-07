@@ -3,7 +3,7 @@ __Deep Q-Networks (DQNs) on Atari-2600 games__
 
 ## Steps to follow
 1. Install `TensorFlow` and `OpenAI Gym`;
-2. Modify hyperparameters, constants and the game name from `config.py` file;
+2. Modify hyperparameters, constants and game name in `config.py`;
 3. Run `DQN_train.ipynb` to train a dqn with the settings from the `config.py`;
 4. Run `DQN_test.ipynb` to evaluate your model and to save some animations.
 
@@ -34,4 +34,5 @@ __Deep Q-Networks (DQNs) on Atari-2600 games__
 12. [Human-level control through deep reinforcement learning (DeepMind paper)](https://storage.googleapis.com/deepmind-data/assets/papers/DeepMindNature14236Paper.pdf)
 13. [Off-policy vs On-policy learning](https://stats.stackexchange.com/questions/184657/what-is-the-difference-between-off-policy-and-on-policy-learning)
 14. [Google dopamine (baselines)](https://github.com/google/dopamine/tree/master/baselines)
-
+15. [Good explanation of problems found when training a DQN](https://towardsdatascience.com/tutorial-double-deep-q-learning-with-dueling-network-architectures-4c1b3fb7f756)
+16. [Question about error clipping, huber loss, etc.](https://www.reddit.com/r/MachineLearning/comments/4dnyiz/question_about_loss_clipping_on_deepminds_dqn/)
