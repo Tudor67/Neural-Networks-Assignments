@@ -1,6 +1,13 @@
 # Project (2018-2019)
 __Image segmentation with saliency maps__
 
+## Poster
+<object data="https://github.com/Tudor67/Neural-Networks-Assignments/blob/master/2018-2019/project/presentations/Tudor_Buzu_NN_Poster.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/Tudor67/Neural-Networks-Assignments/blob/master/2018-2019/project/presentations/Tudor_Buzu_NN_Poster.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/Tudor67/Neural-Networks-Assignments/blob/master/2018-2019/project/presentations/Tudor_Buzu_NN_Poster.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
 ## Installation
 1. Python 3.6
 2. TensorFlow (1.11)
@@ -38,9 +45,6 @@ Folder structure:
     │   └── ...
     └── ...
 
-## Evaluation
-
-## Results
 
 ## References
 1. [Visualizing and Understanding Convolutional Networks (Zeiler and Fergus, 2013)](https://arxiv.org/abs/1311.2901)
