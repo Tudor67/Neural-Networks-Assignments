@@ -1,7 +1,4 @@
 # Project (2018-2019)
-__Image segmentation with saliency maps__
-
-## Poster
 ![poster_1](./presentations/Tudor_Buzu_NN_Poster-1.png)
 ![poster_2](./presentations/Tudor_Buzu_NN_Poster-2.png)
 
@@ -13,14 +10,14 @@ __Image segmentation with saliency maps__
     - `pip install git+https://github.com/raghakot/keras-vis.git`
 
 ## Datasets
-### __CMU-Cornell iCoseg dataset__
+### CMU-Cornell iCoseg Dataset
 1. Look at some groups of images: http://chenlab.ece.cornell.edu/projects/touch-coseg/iCoseg_dataset.pdf;
 2. Download the dataset from: http://chenlab.ece.cornell.edu/downloads.html;
 3. Move dataset folders inside the `./datasets/`;
-4. Copy 80 images and their ground truths (list of images to be copied: `./datasets/icoseg/subset_80/img_list.txt`).  
+4. Copy 80 images and their ground truths.  
+List of images to be copied: `./datasets/icoseg/subset_80/img_list.txt`.  
 `./datasets/icoseg/images/...` -> `./datasets/icoseg/subset_80/images`  
-`./datasets/icoseg/ground_truth/...` -> `./datasets/icoseg/subset_80/grund_truth`.
-  
+`./datasets/icoseg/ground_truth/...` -> `./datasets/icoseg/subset_80/grund_truth`
 
 Folder structure:
 
@@ -44,6 +41,41 @@ Folder structure:
     │   └── ...
     └── ...
 
+### Inria Aerial Image Labeling Dataset
+1. Download the dataset from: https://project.inria.fr/aerialimagelabeling/download/;
+2. Select a subset of images;
+3. Use `./utils/tiff_to_png.ipynb` to change img format.
+
+The final structure of `./datasets`:
+
+    .
+    ├── datasets
+    │   ├── icoseg
+    │   │   ├── subset_80
+    │   │   └── ...
+    │   ├── inria_aerial
+    │   │   └── subset_chicago
+    │   │       ├── test
+    |   |       |   ├── test_img_from_patches           #imgs after merging 224x224 img patches(_h_w)    
+    |   |       |   ├── test_img_patches                #512x512 img patches(+img_h+img_w) for unet
+    |   |       |   ├── test_img_patches_for_sal        #224x224 img patches(+img_h+img_w), don't use
+    |   |       |   ├── test_mask_from_patches          #masks after merging 224x224 mask patches(_h_w)
+    |   |       |   ├── test_mask_patches               #512x512 mask patches(+img_h+img_w) for unet
+    |   |       |   ├── test_mask_patches_for_sal       #224x224 mask patches(+img_h+img_w), don't use
+    |   |       |   ├── test_None_sal_from_patches      #images after merging 512x512 patches (None)
+    |   |       |   ├── test_None_sal_patches           #512x512 vgg16_sal_map_None patches for unet
+    |   |       |   ├── test_None_sal_patches_224_224   #224x224 result patches from vgg16_sal_map_None
+    |   |       |   ├── test_guided_sal_from_patches    #images after merging 512x512 patches (guided)
+    |   |       |   ├── test_guided_sal_patches         #512x512 vgg16_sal_map_guided patches for unet
+    |   |       |   └── test_guided_sal_patches_224_224 #224x224 result patches from vgg16_sal_map_guided
+    │   │       ├── train
+    |   |       |   └── ...
+    │   │       └── val
+    |   |           └── ...
+    │   ├── playground
+    │   └── unseen_categories
+    │       └── test
+    └── ...
 
 ## References
 1. [Visualizing and Understanding Convolutional Networks (Zeiler and Fergus, 2013)](https://arxiv.org/abs/1311.2901)
